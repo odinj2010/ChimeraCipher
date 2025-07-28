@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chimera Cipher - Deniable Encryption System</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              'brand-primary': '#0A0A0A',
+              'brand-secondary': '#1A1A1A',
+              'brand-accent': '#2E3A31',
+              'brand-light': '#888888',
+              'brand-text': '#EAEAEA',
+              'brand-green-neon': '#39FF14',
+            },
+            fontFamily: {
+              'mono-tech': ['"Share Tech Mono"', 'monospace'],
+            }
+          },
+        },
+      }
+    </script>
+    <style>
+      body {
+        background-color: #0A0A0A;
+        background-image: 
+          linear-gradient(rgba(57, 255, 20, 0.05) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(57, 255, 20, 0.05) 1px, transparent 1px);
+        background-size: 20px 20px;
+        animation: flicker 10s infinite steps(1);
+      }
+      @keyframes flicker {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.95; }
+      }
+      /* New Scanline Effect */
+      body::after {
+        content: " ";
+        display: block;
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        background: linear-gradient(to bottom, rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%);
+        background-size: 100% 4px;
+        z-index: 9999;
+        pointer-events: none;
+        animation: scanline 10s linear infinite;
+      }
+      @keyframes scanline {
+          from { background-position: 0 0; }
+          to { background-position: 0 -20px; }
+      }
+      /* Tooltip Styles */
+      .tooltip-container {
+        position: relative;
+        display: inline-block;
+      }
+      .tooltip-icon-container {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        cursor: help;
+      }
+      .tooltip-text {
+        visibility: hidden;
+        width: 280px;
+        background-color: #1A1A1A;
+        color: #EAEAEA;
+        text-align: left;
+        border-radius: 6px;
+        padding: 8px 12px;
+        position: absolute;
+        z-index: 10;
+        bottom: 140%;
+        left: 50%;
+        transform: translateX(-50%);
+        opacity: 0;
+        transition: opacity 0.3s;
+        border: 1px solid #39FF14;
+        font-family: sans-serif;
+        font-size: 12px;
+        line-height: 1.5;
+        pointer-events: none;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+      }
+      .tooltip-container:hover .tooltip-text,
+      .tooltip-icon-container:hover .tooltip-text {
+        visibility: visible;
+        opacity: 1;
+      }
+      
+      /* Accordion styles */
+      .accordion-content {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.5s cubic-bezier(0, 1, 0, 1);
+      }
+      .accordion-content.open {
+         max-height: 2000px; /* Adjust as needed */
+         transition: max-height 1s ease-in-out;
+      }
+      .accordion-content.overflow-visible {
+        overflow: visible;
+      }
+      
+      /* Enhanced focus styles for accessibility */
+      *:focus-visible {
+        outline: 2px solid #39FF14 !important;
+        outline-offset: 2px;
+        box-shadow: 0 0 10px #39FF14;
+      }
+      
+      /* Subtle glow animation for neon elements */
+      @keyframes neon-glow {
+        from {
+          text-shadow: 0 0 2px #39FF14, 0 0 5px #39FF14;
+        }
+        to {
+          text-shadow: 0 0 5px #39FF14, 0 0 10px #39FF14;
+        }
+      }
+      .text-brand-green-neon {
+        animation: neon-glow 1.5s infinite alternate;
+      }
+      button.bg-brand-green-neon {
+         box-shadow: 0 0 5px #39FF14;
+         transition: box-shadow 0.3s ease-in-out;
+      }
+      button.bg-brand-green-neon:hover {
+         box-shadow: 0 0 15px #39FF14;
+      }
+      
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@^19.1.0",
+    "react/": "https://esm.sh/react@^19.1.0/",
+    "react-dom/": "https://esm.sh/react-dom@^19.1.0/",
+    "@google/genai": "https://esm.sh/@google/genai",
+    "pako": "https://esm.sh/pako@2.1.0",
+    "argon2-browser": "https://esm.sh/argon2-browser@^1.18.0"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+  <body class="bg-brand-primary text-brand-text font-mono-tech">
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+  </body>
+</html>

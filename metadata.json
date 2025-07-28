@@ -1,0 +1,6 @@
+{
+  "name": "Chimera Cipher",
+  "description": "A cryptographic system that dissolves data into deniable digital noise.",
+  "requestFramePermissions": [],
+  "prompt": ""
+}
